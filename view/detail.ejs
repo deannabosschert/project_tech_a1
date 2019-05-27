@@ -1,0 +1,56 @@
+<% include head.ejs %>
+<title><%= data.name %> - Profile</title>
+<h1><%= data.name %></h1>
+
+ <img src="/image/<%= data.id %>.jpg" alt>
+<!-- als de gerequeste id gelijk staat aan de id die behoort bij de huidige session, voer dan dit uit: -->
+<% if (Number(id) === Number(session.user.id)) { %>
+  <p>
+    <form action="/delete/<%= data.id %>">
+      <input
+        type=submit
+        id=js-remove
+        class=danger
+        value=Remove></input>
+    </form>
+    <form action="/edit/<%= data.id %>" method=POST>
+      <label>Name:
+        <input type="text" name='name' required value="<%= data.name %>">
+      </label>
+      <label>Email:
+        <input type="email" name='email' required value="<%= data.email %>">
+      </label>
+      <label>Description:
+        <input type="text" name='description' required value="<%= data.description %>">
+      </label>
+      <label>Password:
+        <input type="password" name='password' required value="<%= data.password %>">
+      </label>
+      <label>Sex:
+      <label>
+        <input type="radio" name="sex" value="male"> Male
+      </label>
+      <label>
+        <input type="radio" name="sex" value="female"> Female
+      </label>
+      <label>
+        <input type="radio" name="sex" value="overig" checked> Other
+      </label>
+    </label>
+      <label>Age:
+        <input type="number" name='age' required value="<%= data.age %>">
+      </label>
+      <input
+        type=submit
+        id=js-edit
+        value=Edit></input>
+    </form>
+  </p>
+<% } else { %>
+  <p><%= data.description %></p>
+  <p><%= data.sex %></p>
+  <p><%= data.age%> years old</p>
+  <p>Send me an <a href="mailto:<%= data.email%>">email!</a></p>
+<% } %>
+<p><a href="/">Back to list</a></p>
+<% include tail.ejs %>

@@ -1,0 +1,25 @@
+<% include head.ejs %>
+<title>Profiles - All profiles</title>
+<h1>Profiles</h1>
+<section class="login">
+  <% if (user) { %>
+    Hello <%= user.email %>!
+    <a href=/log-out>Log out</a>
+  <% } else { %>
+    <a href=/log-in>Log in</a>
+    or
+    <a href=/sign-up>Sign up</a>
+  <% } %>
+</section>
+<% for (var index = 0; index < data.length; index++) { %>
+<h2><a href="/<%= data[index].id %>"><%= data[index].name %></a></h2>
+<img src="/image/<%= data[index].id %>.jpg" alt>
+<p><%= data[index].description %><br>
+<%= data[index].age %> years old</p>
+<% } %>
+<!-- <% if (user) { %>
+  <p>
+    <a href=/add>Add a profile</a>
+  </p>
+<% } %> -->
+<% include tail.ejs %>
