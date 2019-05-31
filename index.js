@@ -3,19 +3,19 @@
 // source: https://github.com/MonikaaS/be-assessment-2/blob/master/index.js
 
 // Require dependencies (import)
-var fs = require('fs')
-var express = require('express')
-var session = require('express-session')
-var bodyParser = require('body-parser')
-var multer = require('multer')
-var mysql = require('mysql')
-var bcrypt = require('bcrypt')
-var saltRounds = 10
-var gate = 8000
+const fs = require('fs')
+const express = require('express')
+const session = require('express-session')
+const bodyParser = require('body-parser')
+const multer = require('multer')
+const mysql = require('mysql')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
+const gate = 8000
 
 require('dotenv').config()
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
@@ -25,7 +25,7 @@ var connection = mysql.createConnection({
 connection.connect()
 
 // Define in what folder the images are dropped
-var upload = multer({dest: 'static/image/'})
+const upload = multer({dest: 'static/image/'})
 
 express()
   .use(express.static('static'))
@@ -60,7 +60,7 @@ express()
   // .post('/:id', upload.single('image'), editProfile)
   .post('/log-in', login)
 // As HTML5 doesn't support a delete-req in its forms yet, this'll work for now.
-  .get('/delete/:id', removeProfile)
+  .get('/deleteProfile/:id', removeProfile)
   .get('/deleteMoodboard/:id', removeMoodboard)
 // If everything above doesn't match, carry out notFound.
   // .use(notFound)
@@ -107,7 +107,7 @@ function home(req, res, next) {
     else if(!data){next(new Error('Missing some kind of data!'))
     }
     else {
-// If everything's alright, respond by rendering list.ejs --> then, the variable names in the template are replaced by the variable values.
+// If everything's alright, respond by rendering list.ejs --> then, the constiable names in the template are replaced by the constiable values.
       res.render('list.ejs', {data: data, user: req.session.user})
     }
   }
@@ -115,7 +115,7 @@ function home(req, res, next) {
 
 function profile(req, res, next) {
 // Request the object params as a result of the request, then extract the id from params.
-  var id = req.params.id
+  const id = req.params.id
   connection.query('SELECT * FROM accounts WHERE id = ?', id, done)
 
   function done(err, data) {
@@ -132,10 +132,10 @@ function profile(req, res, next) {
 
 function addProfile(req, res, next) {
 // Extract everyhing from the body of the request
-    var email = req.body.email
-    var password = req.body.password
-    var min = 8
-    var max = 160
+    const email = req.body.email
+    const password = req.body.password
+    const min = 8
+    const max = 160
 
     if (!email || !password) {
       return notFound(409, 'Gebruikersnaam of wachtwoord onjuist ingevuld', res)
@@ -187,7 +187,7 @@ function addProfile(req, res, next) {
         }
         else{
 // When the data was inserted into the database, the assigned ID was read out, Called 'id' from now on.
-        var id = data.insertId
+        const id = data.insertId
         if (req.file){
 // The file is assigned a custom name (the id it belongs to) and places in the 'static/image'-folder.
           fs.rename(req.file.path, 'static/image/'+data.insertId+'.jpg', (err) => {
@@ -230,7 +230,7 @@ function addMoodboard(req, res, next) {
         }
         else{
 // When the data was inserted into the database, the assigned ID was read out, Called 'id' from now on.
-        var id = data.insertId
+        const id = data.insertId
         if (req.file){
 // The file is assigned a custom name (the id it belongs to) and places in the 'static/image'-folder.
           fs.rename(req.file.path, 'static/image/moodboards'+data.insertId+'.jpg', (err) => {
@@ -247,7 +247,7 @@ function addMoodboard(req, res, next) {
 }
 
 function removeProfile(req, res, next) {
-  var id = req.params.id
+  const id = req.params.id
 // Removing profiles other than yours is not allowed
   if (!req.session.user) {
     res.status(401).send('Credentials required')
@@ -268,7 +268,7 @@ function removeProfile(req, res, next) {
 }
 
 function removeMoodboard(req, res, next) {
-  var id = req.params.id
+  const id = req.params.id
 // Removing profiles other than yours is not allowed
   if (req.session.user = req.moodboards.user) {
     res.status(401).send('Credentials required')
@@ -300,21 +300,19 @@ function editForm(req, res){
   res.render('editprofile.ejs')
 }
 
-function editMoodboardForm(req, res){
-  res.render('editMoodboardForm.ejs')
-}
+
 
 function editProfile(req, res){
-  var id = req.session.user.id
-  var name = req.body.name
-  var email = req.body.email
-  var password = req.body.password
-  var sex = req.body.sex
-  var description = req.body.description
-  var age = req.body.age
-  var height = req.body.height
-  var work = req.body.work
-  var image = req.file
+  const id = req.session.user.id
+  const name = req.body.name
+  const email = req.body.email
+  const password = req.body.password
+  const sex = req.body.sex
+  const description = req.body.description
+  const age = req.body.age
+  const height = req.body.height
+  const work = req.body.work
+  const image = req.file
 
 // Editing profiles other than yours is not allowed
   if (!req.session.user) {
@@ -349,8 +347,8 @@ function loginForm(req, res) {
 }
 
 function login(req, res, next) {
-  var email = req.body.email
-  var password = req.body.password
+  const email = req.body.email
+  const password = req.body.password
 
   if (!email || !password) {
     return res.status(400).send('Email or password are missing')
@@ -360,7 +358,7 @@ function login(req, res, next) {
 
   function done(err, data) {
   // Get the data from the first (supposedly: only) user returning from the array
-    var user = data && data[0]
+    const user = data && data[0]
 
     if (err) {
       next(err)

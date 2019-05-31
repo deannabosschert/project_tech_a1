@@ -1,8 +1,8 @@
 /* eslint-env browser */
 /* eslint-disable semi */
 
-var remove = document.getElementById('js-remove')
-var edit = document.getElementById('js-edit')
+const remove = document.getElementById('js-remove')
+const edit = document.getElementById('js-edit')
 
 if (remove) {
   remove.addEventListener('click', onremove)
@@ -14,8 +14,8 @@ if (edit) {
 
 
 function onremove(ev) {
-  var node = ev.target
-  var id = node.dataset.id
+  const node = ev.target
+  const id = node.dataset.id
 
   fetch('/delete/' + id, {method: 'delete'})
     .then(onresponse)
@@ -35,8 +35,8 @@ function onremove(ev) {
 }
 
 function onedit(ev) {
-  var node = ev.target
-  var id = node.dataset.id
+  const node = ev.target
+  const id = node.dataset.id
 
   fetch('/' + id, {method: 'edit'})
     .then(onresponse)
