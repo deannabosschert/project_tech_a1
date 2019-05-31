@@ -1,43 +1,78 @@
-* { box-sizing: border-box }
+/* BASE */
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+
+}
 
 body {
   font-family: serif;
-  background: black;
-  color: white;
-  max-width: 36em;
-  margin: 0 auto
+  display: flex;
+  background-color: black;
 }
 
-a { color: white }
+header {
 
-label, input, textarea, button { margin: 1em 0 }
-
-input, textarea, button {
-  font-size: 1em;
-  padding: 0.5em;
-  border-width: 0;
-  border-radius: 0.25em
 }
 
-input, textarea { width: 100% }
+main {
+}
+
+section {
+
+}
+
+article {
+
+}
+
+span {
+}
+
+blockquote {
+}
+
+h1 {
+  font-size: 2rem;
+  font-family: "limelight", sans-serif;
+  font-variant: small-caps;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-family: "limelight";
+}
+
+h3 {
+  font-variant: small-caps;
+  font-size: 0.9rem;
+}
+
+p {
+  font-size: 0.7rem;
+}
 
 img {
-  max-width: 100%;
-  max-height: 17em;
 }
 
-.danger {
-  background: orange;
-  color: white
+/* LAYOUT */
+
+
+
+/* MODULES */
+.something{
+
 }
 
-h1{
-  font-size: 4.5em;
-  color: yellow;
-}
 
-section{
-  font-size: 2.5em;
-  margin-top: -1em;
+/* STATE */
+@@keyframes sumting {
+
 }
+/* THEME */
