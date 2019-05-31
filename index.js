@@ -43,6 +43,7 @@ express()
   .set('views', 'view')
 // If you place a get-request on this URL, the following function is called.
   .get('/:id/edit', editForm)
+  .get('/moodboards/:id/edit', editMoodboardForm)
   .get('/', home)
   .get('/log-in', loginForm)
   .get('/log-out', logout)
@@ -50,13 +51,17 @@ express()
   .get('/:id', profile)
   .get('/moodboards', moodboard)
   .get('/moodboard-detail', moodboarddetail)
+  .get('/add-moodboard', addmoodboard)
   // When posted to '/', pass on the parameters req and res to 'upload', which passes it to the 'add' function.
-  .post('/', upload.single('image'), add)
+  .post('/', upload.single('image'), addProfile)
+  .post('/add-moodboard', upload.single('static/image/moodboards'), addMoodboard)
   .post('/edit/:id', editProfile)
+  .post('/editMoodboard/:id', editMoodboard)
   // .post('/:id', upload.single('image'), editProfile)
   .post('/log-in', login)
 // As HTML5 doesn't support a delete-req in its forms yet, this'll work for now.
-  .get('/delete/:id', remove)
+  .get('/delete/:id', removeProfile)
+  .get('/deleteMoodboard/:id', removeMoodboard)
 // If everything above doesn't match, carry out notFound.
   // .use(notFound)
   .listen(gate, function(){
@@ -88,7 +93,7 @@ function moodboarddetail(req, res, next){
     else if(!data){next(new Error('Missing some kind of data!'))
     }
     else {
-      res.render('moodboard-detail.ejs', {title: title, user:id})
+      res.render('moodboard-detail.ejs', {data: data[0], id:id})
     }
 }
 
@@ -125,7 +130,7 @@ function profile(req, res, next) {
   }
 }
 
-function add(req, res, next) {
+function addProfile(req, res, next) {
 // Extract everyhing from the body of the request
     var email = req.body.email
     var password = req.body.password
@@ -170,6 +175,8 @@ function add(req, res, next) {
         description: req.body.description,
         sex: req.body.sex,
         age: req.body.age,
+        height: req.body.height,
+        work: req.body.work,
         image: req.file
         }, oninsert)
       }
@@ -196,7 +203,50 @@ function add(req, res, next) {
     }
 }
 
-function remove(req, res, next) {
+function addMoodboard(req, res, next) {
+// Extract everyhing from the body of the request
+    connection.query('SELECT * FROM moodboards WHERE title = ?', title, done)
+
+    function done(err, data) {
+      if (err) {
+        next(err)
+      }
+    // Checks if the email is already in use --> checks if there's an empty data-array
+
+
+
+      else{
+        connection.query('INSERT INTO moodboards SET ?', {
+        title: title,
+        image: req.file,
+        description: req.body.description,
+        user: req.session.user,
+        }, oninsert)
+      }
+
+      function oninsert(err, data) {
+        if (err) {
+          next(err)
+        }
+        else{
+// When the data was inserted into the database, the assigned ID was read out, Called 'id' from now on.
+        var id = data.insertId
+        if (req.file){
+// The file is assigned a custom name (the id it belongs to) and places in the 'static/image'-folder.
+          fs.rename(req.file.path, 'static/image/moodboards'+data.insertId+'.jpg', (err) => {
+            if (err) {
+              result.errors.push({id: 500, title: 'Internal Server Error'}, err)
+            }
+          })
+         }
+          req.session.user = data
+          res.redirect('/' + data.insertId)
+        }
+      }
+    }
+}
+
+function removeProfile(req, res, next) {
   var id = req.params.id
 // Removing profiles other than yours is not allowed
   if (!req.session.user) {
@@ -217,12 +267,41 @@ function remove(req, res, next) {
   }
 }
 
+function removeMoodboard(req, res, next) {
+  var id = req.params.id
+// Removing profiles other than yours is not allowed
+  if (req.session.user = req.moodboards.user) {
+    res.status(401).send('Credentials required')
+    return
+  }
+
+  connection.query('DELETE FROM moodboards WHERE id = ?', id, done)
+
+  function done(err) {
+    if (err) {
+      next(err)
+    }
+    else {
+      req.session.destroy()
+      res.redirect('/')
+    }
+  }
+}
+
 function signupForm(req, res) {
   res.render('sign-up.ejs')
 }
 
+function add-moodboardForm(req, res) {
+  res.render('add-moodboard.ejs')
+}
+
 function editForm(req, res){
   res.render('editprofile.ejs')
+}
+
+function editMoodboardForm(req, res){
+  res.render('editMoodboardForm.ejs')
 }
 
 function editProfile(req, res){
@@ -233,6 +312,8 @@ function editProfile(req, res){
   var sex = req.body.sex
   var description = req.body.description
   var age = req.body.age
+  var height = req.body.height
+  var work = req.body.work
   var image = req.file
 
 // Editing profiles other than yours is not allowed
@@ -251,7 +332,9 @@ function editProfile(req, res){
         description: req.body.description,
         sex: req.body.sex,
         age: req.body.age,
-        image: req.file
+        image: req.file,
+        work: req.work,
+        height: req.height
       }, id], done)
     }
 

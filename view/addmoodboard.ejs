@@ -1,0 +1,62 @@
+<% include head.ejs %>
+<title>Add new moodboard</title>
+<h1>Sign up</h1>
+<!-- <form action=/sign-up method=post> -->
+
+  <form action="/add-moodboard" method="post" enctype="multipart/form-data">
+  <label>
+    Email
+    <input name=email required>
+  </label>
+  <label>
+    Name
+    <input name=name required>
+  </label>
+  <label>
+    Description
+    <input name=description>
+  </label>
+  <label>
+    Password
+    <input name=password type=password>
+  </label>
+  <label for="sex">Sex:</label><br>
+  <label>
+    Male
+    <input type="radio" name="sex" value="male" checked>
+  </label>
+  <label>
+    Female
+    <input type="radio" name="sex" value="female">
+  </label>
+  <label>
+    Other
+    <input type="radio" name="sex" value="other">
+  </label>
+  <label>
+    Age
+    <input name="age" type=number>
+  </label>
+  <label>
+    Height in cm
+    <input name="height" type=number>
+  </label>
+  <label for="work">Photographer or model?</label><br>
+  <label>
+    Photographer
+    <input type="radio" name="work" value="photographer" checked>
+  </label>
+  <label>
+    Model
+    <input type="radio" name="work" value="model">
+  </label>
+  <label>
+    Both
+    <input type="radio" name="work" value="both">
+  </label>
+  <label for="image">Choose a picture:</label>
+    <input type="file" name="image" accept="image/jpg"><br>
+
+  <button>Sign up</button>
+</form>
+<% include tail.ejs %>

@@ -28,6 +28,7 @@ They can match through moodboards of shoots to work on, through availability or 
 - Register
 - login
 - moodboards
+- add moodboard
 - moodboard detail
 - profile (user detail)
 - profiles (of others)
@@ -76,8 +77,9 @@ So far I'll be using two relational tables with data:
 - title
 - owner (users.id)
 - picture of moodboard
+- description
 
-
+--> 'data' is dus hetgeen in de tabel staat; id= id IN moodboards
 
 ## Tech
 
