@@ -8,13 +8,13 @@ html {
   margin: 0;
   padding: 0;
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
-
 }
 
 body {
   font-family: serif;
   display: flex;
   background-color: black;
+  color: white;
 }
 
 header {
@@ -66,7 +66,7 @@ img {
 
 
 /* MODULES */
-.something{
+.login{
 
 }
 

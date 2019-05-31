@@ -22,6 +22,7 @@ They can match through moodboards of shoots to work on, through availability or 
 - [x] Add code comments
 - [ ] Update CSS  
 - [ ] Loads more
+- [ ] Add linter
 
 ### Offline weekend to-do
 - [ ] New sitemap
@@ -36,6 +37,9 @@ They can match through moodboards of shoots to work on, through availability or 
 - message detail (socket.io)
 - own profile editable
 - chat
+
+--> installeer linter
+- bugfixes
 
 ### When at home:
 - [ ] Re-install HeidiSQL/MySQL --> tried to do so with dataroaming in Ardennen but halfway I went through my mb's...

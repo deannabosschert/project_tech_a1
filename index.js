@@ -48,10 +48,11 @@ express()
   .get('/log-in', loginForm)
   .get('/log-out', logout)
   .get('/sign-up', signupForm)
+  .get('/sign-up', signupForm)
   .get('/:id', profile)
   .get('/moodboards', moodboard)
-  .get('/moodboard-detail', moodboarddetail)
-  .get('/add-moodboard', addmoodboard)
+  .get('/moodboard-detail/:id', moodboarddetail)
+  .get('/add-moodboard', addmoodboardForm)
   // When posted to '/', pass on the parameters req and res to 'upload', which passes it to the 'add' function.
   .post('/', upload.single('image'), addProfile)
   .post('/add-moodboard', upload.single('static/image/moodboards'), addMoodboard)
@@ -93,7 +94,7 @@ function moodboarddetail(req, res, next){
     else if(!data){next(new Error('Missing some kind of data!'))
     }
     else {
-      res.render('moodboard-detail.ejs', {data: data[0], id:id})
+      res.render('moodboard-detail.ejs', {data: data[0], currentUser: req.session.user})
     }
 }
 
@@ -108,7 +109,7 @@ function home(req, res, next) {
     }
     else {
 // If everything's alright, respond by rendering list.ejs --> then, the constiable names in the template are replaced by the constiable values.
-      res.render('list.ejs', {data: data, user: req.session.user})
+      res.render('home.ejs', {data: data, user: req.session.user})
     }
   }
 }
@@ -292,7 +293,7 @@ function signupForm(req, res) {
   res.render('sign-up.ejs')
 }
 
-function add-moodboardForm(req, res) {
+function addmoodboardForm(req, res) {
   res.render('add-moodboard.ejs')
 }
 
@@ -391,6 +392,7 @@ function logout(req, res, next) {
     }
   })
 }
+
 
 // dit is de laatste errorafhandeling als er verder geen errors zijn gevonden
 // function notFound(req, res) {

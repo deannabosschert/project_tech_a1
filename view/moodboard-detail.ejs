@@ -5,7 +5,7 @@
  <img src="static/image/moodboards<%= data.id %>.jpg" alt='picture of moodboard'>
 
 <!-- als de gerequeste id gelijk staat aan de id die behoort bij de huidige session, voer dan dit uit: -->
-<% if (Number(user) === Number(session.user.id)) { %>
+<% if (Number(user) === Number(currentUser)) { %>
   <p>
     <form action="/deleteMoodboard/<%= data.id %>">
       <input
