@@ -37,7 +37,7 @@ They can match through moodboards of shoots to work on, through availability or 
 - chat
 
 ### When at home:
-- [ ] Re-install HeidiSQL
+- [ ] Re-install HeidiSQL/MySQL --> tried to do so with dataroaming in Ardennen but halfwag I went through my mb's...
 
 
 ## Example

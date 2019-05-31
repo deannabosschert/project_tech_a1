@@ -2,7 +2,8 @@
 <title><%= data.title %> - moodboard</title>
 <h1><%= data.title %></h1>
 
- <img src="static/image/moodboards<%= data.id %>.jpg" alt>
+ <img src="static/image/moodboards<%= data.id %>.jpg" alt='picture of moodboard'>
+
 <!-- als de gerequeste id gelijk staat aan de id die behoort bij de huidige session, voer dan dit uit: -->
 <% if (Number(user) === Number(session.user.id)) { %>
   <p>
@@ -17,9 +18,6 @@
       <label><title>Title</title>:
         <input type="text" name='title' required value="<%= data.title %>">
       </label>
-      <label>Image:
-        <input type="email" name='email' required value="<%= data.email %>">
-      </label>
       <label>Description:
         <input type="text" name='description' required value="<%= data.description %>">
       </label>
@@ -33,14 +31,6 @@
 <% } else { %>
   <p><%= data.description %></p>
   <p>Added by: <%= data.user %></p>
-
-
-
-  - ID
-  - title
-  - owner (users.id)
-  - picture of moodboard
-  - description
 <% } %>
 <p><a href="/">Back to profiles</a></p>
 <% include tail.ejs %>

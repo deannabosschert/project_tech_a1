@@ -2,7 +2,7 @@
 <title><%= data.name %> - Profile</title>
 <h1><%= data.name %></h1>
 
- <img src="/image/<%= data.id %>.jpg" alt>
+ <img src="/image/<%= data.id %>.jpg" alt='profile picture'>
 <!-- als de gerequeste id gelijk staat aan de id die behoort bij de huidige session, voer dan dit uit: -->
 <% if (Number(id) === Number(session.user.id)) { %>
   <p>
