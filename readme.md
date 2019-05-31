@@ -35,6 +35,9 @@ They can match through moodboards of shoots to work on, through availability or 
 - own profile editable
 - chat
 
+### When at home:
+- [ ] Re-install HeidiSQL
+
 
 ## Example
 [screenshot]
@@ -69,6 +72,11 @@ So far I'll be using two relational tables with data:
 |    |       |      |             |      |     |       |
 
 **Moodboards**
+- ID
+- title
+- owner (users.id)
+- picture of moodboard
+
 
 
 ## Tech

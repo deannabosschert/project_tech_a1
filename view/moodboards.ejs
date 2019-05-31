@@ -1,0 +1,17 @@
+<% include head.ejs %>
+<title>Moodboards</title>
+<h1>Moodboards</h1>
+
+<% for (var index = 0; index < data.length; index++) { %>
+<h2><a href="/<%= data[index].moodboard.id %>"><%= data[index].moodboards.title %></a></h2>
+<img src="/image/<%= data[index].moodboards.id %>.jpg" alt="">
+<p><%= data[index].description %><br>
+<%= data[index].moodboard.user.id %> cm</p>
+
+<% } %>
+<!-- <% if (user) { %>
+  <p>
+    <a href=/add>Add a profile</a>
+  </p>
+<% } %> -->
+<% include tail.ejs %>

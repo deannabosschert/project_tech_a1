@@ -48,7 +48,8 @@ express()
   .get('/log-out', logout)
   .get('/sign-up', signupForm)
   .get('/:id', profile)
-  .get('/moodboards', moodboards)
+  .get('/moodboards', moodboard)
+  .get('/moodboard-detail', moodboarddetail)
   // When posted to '/', pass on the parameters req and res to 'upload', which passes it to the 'add' function.
   .post('/', upload.single('image'), add)
   .post('/edit/:id', editProfile)
@@ -66,12 +67,29 @@ express()
 function moodboards(req, res, next){
   connection.query('SELECT * FROM moodboards', done)
   function done(err,data){
+    if (err) {
+// if there's an error, try to carry out the following middleware.
+      next(err)
+    }
+    else if(!data){next(new Error('Missing some kind of data!'))
+    }
+    else {
+      res.render('moodboards.ejs', {title: title, user:id})
+    }
+}
 
-
-  }
-  console.log('incoming')
-  res.render('moodboards.ejs', {title: title, user:id})
-
+function moodboarddetail(req, res, next){
+  connection.query('SELECT * FROM moodboards', done)
+  function done(err,data){
+    if (err) {
+// if there's an error, try to carry out the following middleware.
+      next(err)
+    }
+    else if(!data){next(new Error('Missing some kind of data!'))
+    }
+    else {
+      res.render('moodboard-detail.ejs', {title: title, user:id})
+    }
 }
 
 function home(req, res, next) {
@@ -102,7 +120,7 @@ function profile(req, res, next) {
       next()
     } else {
     // Ik definieer user verkeerd. rip.
-      res.render('detail.ejs', {data: data[0], session: req.session, user: req.session.user, id: id})
+      res.render('profiledetail.ejs', {data: data[0], session: req.session, user: req.session.user, id: id})
     }
   }
 }

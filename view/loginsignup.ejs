@@ -1,0 +1,17 @@
+<% include head.ejs %>
+<title>Login or sign up</title>
+<h1>Please log in to chat</h1>
+<form action=/log-in method=post>
+  <label>
+    Email
+    <input name=email>
+  </label>
+  <label>
+    Password
+    <input name=password type=password>
+  </label>
+  <button>Log in</button>
+</form>
+<h1>Or sign up <a href= "/sign-up">here</h1>
+
+<% include tail.ejs %>
