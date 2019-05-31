@@ -2,7 +2,7 @@
 
 # Camerades
 This is a dating site where photographers and models meet.
-They can match on professional grounds, or with romantic interest aswell.
+They can match on professional grounds.
 
 They can match through moodboards of shoots to work on, through availability or through personal interests.
 
@@ -22,17 +22,27 @@ They can match through moodboards of shoots to work on, through availability or 
 - [ ] Update CSS  
 - [ ] Loads more
 
+### Offline weekend to-do
+- [ ] New sitemap
+- home
+- Register
+- login
+- moodboards
+- moodboard detail
+- profile (user detail)
+- profiles (of others)
+- message detail (socket.io)
+- own profile editable
+- chat
+
+
 ## Example
 [screenshot]
-
-
-## Description
-This is a dating site
 
 <!-- When you first visit the site, you can fill in the form already and see with which persons you've matched. You can view their profile, but to send them a message you'll have to register. -->
 
 So, this website will contain the following pages:
-- Home (moodboards + 10 pre-matched users + calender for the next week?)
+- Home (moodboards + 10 pre-matched users + calendar for the next week?)
 - Login
 - Register
 - Profile (portfolio + moodboards)
@@ -64,8 +74,8 @@ So far I'll be using two relational tables with data:
 ## Tech
 
 ###  Install
-`git clone https://github.com/deannabosschert/be-assessment-2.git`  
-`cd /be-assessment-2.git`  
+`git clone https://github.com/deannabosschert/project_tech_a1.git`  
+`cd /project_tech_a1.git`  
 `npm install`  
 
 ### Packages

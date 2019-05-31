@@ -48,6 +48,7 @@ express()
   .get('/log-out', logout)
   .get('/sign-up', signupForm)
   .get('/:id', profile)
+  .get('/moodboards', moodboards)
   // When posted to '/', pass on the parameters req and res to 'upload', which passes it to the 'add' function.
   .post('/', upload.single('image'), add)
   .post('/edit/:id', editProfile)
@@ -61,6 +62,17 @@ express()
     console.log('This server runs on gate '+gate)
   })
 
+
+function moodboards(req, res, next){
+  connection.query('SELECT * FROM moodboards', done)
+  function done(err,data){
+
+
+  }
+  console.log('incoming')
+  res.render('moodboards.ejs', {title: title, user:id})
+
+}
 
 function home(req, res, next) {
   connection.query('SELECT * FROM accounts', done)
