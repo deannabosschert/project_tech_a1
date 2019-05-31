@@ -17,7 +17,8 @@ They can match through moodboards of shoots to work on, through availability or 
 - [ ] Make current routes work  
 - [ ] Make 'edit' work  
 - [x] Make 'remove' work  
-- [x] Make everything so that only the current user can edit its own profile
+- [x] Make everything so that only the current user can edit/remove its own profile
+- [x] Make everything so that only the owner can edit/remove its own moodboard
 - [x] Add code comments
 - [ ] Update CSS  
 - [ ] Loads more
@@ -37,7 +38,7 @@ They can match through moodboards of shoots to work on, through availability or 
 - chat
 
 ### When at home:
-- [ ] Re-install HeidiSQL/MySQL --> tried to do so with dataroaming in Ardennen but halfwag I went through my mb's...
+- [ ] Re-install HeidiSQL/MySQL --> tried to do so with dataroaming in Ardennen but halfway I went through my mb's...
 
 
 ## Example

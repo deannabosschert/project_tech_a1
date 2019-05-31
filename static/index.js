@@ -39,7 +39,7 @@ function onremoveProfile(ev) {
   }
 
   function onfail() {
-    throw new Error('Could not delete!')
+    throw new Error('Could not delete profile!')
   }
 }
 
@@ -60,7 +60,7 @@ function oneditProfile(ev) {
   }
 
   function onfail() {
-    throw new Error('Could not edit!')
+    throw new Error('Could not edit profile!')
   }
 }
 
@@ -77,11 +77,11 @@ function onremoveMoodboard(ev) {
   }
 
   function onload() {
-    window.location = '/'
+    window.location = '/moodboards'
   }
 
   function onfail() {
-    throw new Error('Could not delete!')
+    throw new Error('Could not delete moodboard!')
   }
 }
 
@@ -99,10 +99,10 @@ function oneditMoodboard(ev) {
   }
 
   function onload() {
-    window.location = '/'
+    window.location = '/moodboards'
   }
 
   function onfail() {
-    throw new Error('Could not edit!')
+    throw new Error('Could not edit moodboard!')
   }
 }
