@@ -40,6 +40,23 @@
       <label>Age:
         <input type="number" name='age' required value="<%= data.age %>">
       </label>
+      <label>
+        Height in cm
+        <input type="number" name='height' required value="<%= data.height %>">
+      </label>
+      <label for="work">Photographer or model?</label><br>
+      <label>
+        Photographer
+        <input type="radio" name="work" value="photographer">
+      </label>
+      <label>
+        Model
+        <input type="radio" name="work" value="model">
+      </label>
+      <label>
+        Both
+        <input type="radio" name="work" value="both">
+      </label>
       <input
         type=submit
         id=js-edit
@@ -50,7 +67,10 @@
   <p><%= data.description %></p>
   <p><%= data.sex %></p>
   <p><%= data.age%> years old</p>
+  <p><%= data.work%></p>
+  <p><%= data.height%> cm long/p>
+
   <p>Send me an <a href="mailto:<%= data.email%>">email!</a></p>
 <% } %>
-<p><a href="/">Back to list</a></p>
+<p><a href="/">Back to profiles</a></p>
 <% include tail.ejs %>
